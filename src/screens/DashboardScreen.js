@@ -74,8 +74,8 @@ const styles = StyleSheet.create({
     marginBottom: height * 0.05,
   },
   logo: {
-    width: width * 0.7, // increased size (70% of screen width)
-    height: width * 0.7,
+    width: width * 0.9, // increased size (70% of screen width)
+    height: width * 0.9,
     resizeMode: "contain",
   },
   textContainer: {
