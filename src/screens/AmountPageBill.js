@@ -6,7 +6,6 @@ import {
   StyleSheet,
   TouchableOpacity,
   ScrollView,
-  Alert,
   Platform,
   StatusBar,
 } from "react-native";
@@ -30,8 +29,8 @@ const AmountPageBill = ({ route, navigation }) => {
     setNoteIndex((prev) => (prev + 1) % noteOptions.length);
   };
 
-  const [useNote, setUseNote] = useState(true); // toggle notes on/off
-  const [customNote, setCustomNote] = useState(""); // user-typed note
+  const [useNote, setUseNote] = useState(true);
+  const [customNote, setCustomNote] = useState("");
 
   // ✅ Totals calculation
   const { subTotal, taxAmount, grandTotal } = useMemo(() => {
@@ -54,9 +53,9 @@ const AmountPageBill = ({ route, navigation }) => {
         : noteOptions[noteIndex]
       : "";
 
-    Alert.alert("Download", "Invoice downloaded successfully ✅");
-    console.log("Final Invoice Data:", {
-      ...invoiceData,
+    // ✅ Navigate to Success Page
+    navigation.navigate("InvoiceSuccess", {
+      invoiceData,
       subTotal,
       taxRate,
       taxAmount,
@@ -114,7 +113,6 @@ const AmountPageBill = ({ route, navigation }) => {
         <View style={styles.notesHeader}>
           <Text style={styles.section}>Notes</Text>
           <View style={{ flexDirection: "row", alignItems: "center" }}>
-            {/* 🔄 Cycle note */}
             <TouchableOpacity onPress={cycleNote}>
               <Ionicons
                 name="refresh"
@@ -123,7 +121,6 @@ const AmountPageBill = ({ route, navigation }) => {
                 style={{ marginRight: 15 }}
               />
             </TouchableOpacity>
-            {/* ☑ Enable/disable note */}
             <TouchableOpacity onPress={() => setUseNote(!useNote)}>
               <Ionicons
                 name={useNote ? "checkbox" : "square-outline"}
@@ -136,12 +133,10 @@ const AmountPageBill = ({ route, navigation }) => {
 
         {useNote && (
           <>
-            {/* Show selected template */}
             <View style={styles.noteBox}>
               <Text style={styles.noteText}>{noteOptions[noteIndex]}</Text>
             </View>
 
-            {/* OR Custom note */}
             <Text style={styles.orText}>OR</Text>
             <TextInput
               style={[styles.input, styles.customNoteInput]}
@@ -164,8 +159,6 @@ const AmountPageBill = ({ route, navigation }) => {
 
 const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: "#fff" },
-
-  // ✅ Header
   header: {
     flexDirection: "row",
     alignItems: "center",
@@ -183,14 +176,8 @@ const styles = StyleSheet.create({
     fontWeight: "600",
     color: "#333",
   },
-
   scrollContent: { padding: 20, paddingBottom: 40 },
-  section: {
-    fontSize: 16,
-    fontWeight: "600",
-    marginVertical: 12,
-    color: "#444",
-  },
+  section: { fontSize: 16, fontWeight: "600", marginVertical: 12, color: "#444" },
   row: {
     flexDirection: "row",
     justifyContent: "space-between",
@@ -209,13 +196,7 @@ const styles = StyleSheet.create({
     fontSize: 15,
     marginBottom: 12,
   },
-  taxInput: {
-    width: 80,
-    textAlign: "center",
-    fontWeight: "600",
-  },
-
-  // ✅ Notes
+  taxInput: { width: 80, textAlign: "center", fontWeight: "600" },
   notesHeader: {
     flexDirection: "row",
     justifyContent: "space-between",
@@ -229,13 +210,9 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     padding: 14,
     backgroundColor: "#fff4ec",
-    marginBottom: 16, // 👈 gap added
+    marginBottom: 16,
   },
-  noteText: {
-    fontSize: 14,
-    color: "#444",
-    lineHeight: 20,
-  },
+  noteText: { fontSize: 14, color: "#444", lineHeight: 20 },
   orText: {
     textAlign: "center",
     marginBottom: 10,
@@ -245,10 +222,8 @@ const styles = StyleSheet.create({
   customNoteInput: {
     height: 100,
     textAlignVertical: "top",
-    marginBottom: 16, // 👈 gap added
+    marginBottom: 16,
   },
-
-  // ✅ Button
   button: {
     backgroundColor: "#FF7700",
     paddingVertical: 16,

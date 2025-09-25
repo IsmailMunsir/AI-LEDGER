@@ -9,6 +9,7 @@ import DashboardScreen from '../screens/DashboardScreen';
 import CreateQuotationScreen from '../screens/CreateQuotationScreen';
 import BillFormScreen from '../screens/BillFormScreen';
 import AmountPageBill from '../screens/AmountPageBill';
+import InvoiceSuccessScreen from "../screens/InvoiceSuccessScreen";
 
 const Stack = createStackNavigator();
 
@@ -22,6 +23,7 @@ const AppNavigator = () => {
         <Stack.Screen name="CreateQuotation" component={CreateQuotationScreen} />
         <Stack.Screen name="BillForm" component={BillFormScreen} />
         <Stack.Screen name="AmountPageBill" component={AmountPageBill} />
+        <Stack.Screen name="InvoiceSuccess" component={InvoiceSuccessScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
