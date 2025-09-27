@@ -20,7 +20,7 @@ const DashboardScreen = ({ navigation }) => {
           <TouchableOpacity style={styles.primaryButton} onPress={() => navigation.navigate("BillForm")}>
             <Text style={styles.primaryButtonText}>Create new Bill</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.secondaryButton} onPress={() => navigation.navigate("CreateQuotation")}>
+          <TouchableOpacity style={styles.secondaryButton}>
             <Text style={styles.secondaryButtonText}>Create new Quotation</Text>
           </TouchableOpacity>
         </View>
